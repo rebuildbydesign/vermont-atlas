@@ -8,10 +8,11 @@ var currentPopup = null;
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/light-v11',
-    center: [-85.7682, 37.8393], // CENTERED ON KENTUCKY
-    zoom: 6.8,
+    center: [-72.9, 44.0], // CENTERED ON VERMONT
+    zoom: 7.6,                   // adjust zoom for state-wide view
     minZoom: 5.8
 });
+
 
 // RESPONSIVE INITIAL ZOOM FOR MOBILE
 if (window.innerWidth <= 700) {
@@ -99,15 +100,15 @@ map.on('click', () => {
 
 // ADD ALL MAP LAYERS (FEMA, CONGRESS, HOUSE, SENATE)
 function addLayers() {
-    map.addSource('kentuckyFema', {
+    map.addSource('vermontFema', {
         type: 'geojson',
-        data: 'data/KY_FEMA_County.json'
+        data: 'data/VT_FEMA_County.geojson'
     });
 
     map.addLayer({
         'id': 'femaDisasters',
         'type': 'fill',
-        'source': 'kentuckyFema',
+        'source': 'vermontFema',
         'paint': {
             'fill-color': [
                 'match',
@@ -130,15 +131,15 @@ function addLayers() {
 
 // ADD CONGRESSIONAL DISTRICT POLYGONS
 function addCongressionalLayers() {
-    map.addSource('kyCongress', {
+    map.addSource('vtCongress', {
         type: 'geojson',
-        data: 'data/KY_Congress.json'
+        data: 'data/VT_Congress.geojson'
     });
 
     map.addLayer({
         'id': 'congressionalDistricts',
         'type': 'fill',
-        'source': 'kyCongress',
+        'source': 'vtCongress',
         'paint': {
             'fill-color': 'transparent',
             'fill-outline-color': '#000000'
