@@ -8,11 +8,10 @@ var currentPopup = null;
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/light-v11',
-    center: [-72.9, 44.0], // CENTERED ON VERMONT
-    zoom: 7.6,                   // adjust zoom for state-wide view
+    center: [-72.5778, 44.0], // CENTERED ON VERMONT
+    zoom: 6.8,
     minZoom: 5.8
 });
-
 
 // RESPONSIVE INITIAL ZOOM FOR MOBILE
 if (window.innerWidth <= 700) {
@@ -118,9 +117,9 @@ function addLayers() {
                 6, '#fb6a4a', 7, '#de2d26', 8, '#de2d26',
                 9, '#de2d26', 10, '#a50f15', 11, '#a50f15',
                 12, '#a50f15', 13, '#a50f15', 14, '#a50f15',
-                15, '#a50f15', 16, '#a50f15',  17, '#a50f15', 
-                18, '#a50f15', 19, '#a50f15', 20, '#a50f15', 
-                21, '#a50f15', 22, '#a50f15','#ffffff'
+                15, '#a50f15', 16, '#a50f15', 17, '#a50f15', 18, '#a50f15',
+                19, '#a50f15', 20, '#a50f15', 21, '#a50f15', 22, '#a50f15',
+                23, '#a50f15', 24, '#a50f15','#ffffff'
             ],
             'fill-opacity': 1,
             'fill-outline-color': '#000000'
@@ -144,8 +143,7 @@ function addCongressionalLayers() {
         'type': 'fill',
         'source': 'vtCongress',
         'paint': {
-            'fill-color': 'transparent',
-            'fill-outline-color': '#000000'
+            'fill-color': 'transparent'
         }
     });
 }
@@ -154,16 +152,15 @@ function addCongressionalLayers() {
 function addHouseLayers() {
     map.addSource('vtHouse', {
         type: 'geojson',
-        data: 'data/VT_House.json'
+        data: 'data/VT_House.geojson'
     });
 
     map.addLayer({
         'id': 'houseDistricts',
         'type': 'fill',
-        'source': 'vrHouse',
+        'source': 'vtHouse',
         'paint': {
-            'fill-color': 'transparent',
-            'fill-outline-color': '#000000'
+            'fill-color': 'transparent'
         }
     });
 }
@@ -172,7 +169,7 @@ function addHouseLayers() {
 function addSenateLayers() {
     map.addSource('vtSenate', {
         type: 'geojson',
-        data: 'data/VT_Senate.json'
+        data: 'data/VT_Senate.geojson'
     });
 
     map.addLayer({
@@ -180,8 +177,7 @@ function addSenateLayers() {
         'type': 'fill',
         'source': 'vtSenate',
         'paint': {
-            'fill-color': 'transparent',
-            'fill-outline-color': '#000000'
+            'fill-color': 'transparent'
         }
     });
 }
@@ -253,7 +249,7 @@ function consolidateFeatureData(features) {
                 break;
             case 'senateDistricts':
                 featureData.senateDist = feature.properties.District;
-                featureData.senateRepName = feature.properties.Full_Name;
+                featureData.senateRepName = feature.properties.Full_Name
                 break;
         }
     });
@@ -294,7 +290,7 @@ function createPopupContent(featureData) {
           Elected Officials Covering This Location
         </div>
         <ul style="list-style:none; padding:0; margin:0 0 0.9em 0;">
-          <li style="margin-bottom: 3px;"><strong>U.S. Senate:</strong> Mitch McConnell (R), Rand Paul (R)</li>
+          <li style="margin-bottom: 3px;"><strong>U.S. Senate:</strong> Bernie Sanders (D), Peter Welch (D)</li>
           <li style="margin-bottom: 3px;"><strong>U.S. House:</strong> ${featureData.congressRepName || 'N/A'} (${featureData.congressionalDist || 'N/A'})</li>
           <li style="margin-bottom: 3px;"><strong>State Senate:</strong> ${featureData.senateRepName || 'N/A'} (${featureData.senateDist || 'N/A'})</li>
           <li style="margin-bottom: 3px;"><strong>State House:</strong> ${featureData.houseRepName || 'N/A'} (${featureData.houseDist || 'N/A'})</li>
