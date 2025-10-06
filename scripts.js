@@ -118,9 +118,12 @@ function addLayers() {
                 6, '#fb6a4a', 7, '#de2d26', 8, '#de2d26',
                 9, '#de2d26', 10, '#a50f15', 11, '#a50f15',
                 12, '#a50f15', 13, '#a50f15', 14, '#a50f15',
-                15, '#a50f15', 16, '#a50f15', '#ffffff'
+                15, '#a50f15', 16, '#a50f15',  17, '#a50f15', 
+                18, '#a50f15', 19, '#a50f15', 20, '#a50f15', 
+                21, '#a50f15', 22, '#a50f15','#ffffff'
             ],
-            'fill-opacity': 1
+            'fill-opacity': 1,
+            'fill-outline-color': '#000000'
         }
     });
 
@@ -149,15 +152,15 @@ function addCongressionalLayers() {
 
 // ADD STATE HOUSE DISTRICT POLYGONS
 function addHouseLayers() {
-    map.addSource('kyHouse', {
+    map.addSource('vtHouse', {
         type: 'geojson',
-        data: 'data/KY_House.json'
+        data: 'data/VT_House.json'
     });
 
     map.addLayer({
         'id': 'houseDistricts',
         'type': 'fill',
-        'source': 'kyHouse',
+        'source': 'vrHouse',
         'paint': {
             'fill-color': 'transparent',
             'fill-outline-color': '#000000'
@@ -167,15 +170,15 @@ function addHouseLayers() {
 
 // ADD STATE SENATE DISTRICT POLYGONS
 function addSenateLayers() {
-    map.addSource('kySenate', {
+    map.addSource('vtSenate', {
         type: 'geojson',
-        data: 'data/KY_Senate.json'
+        data: 'data/VT_Senate.json'
     });
 
     map.addLayer({
         'id': 'senateDistricts',
         'type': 'fill',
-        'source': 'kySenate',
+        'source': 'vtSenate',
         'paint': {
             'fill-color': 'transparent',
             'fill-outline-color': '#000000'
