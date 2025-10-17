@@ -162,6 +162,21 @@ html {
     margin-right: 8px;
 }
 
+/* LAYER TOGGLES */
+
+
+#layer-toggle-ui label {
+  display: block;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+#layer-toggle-ui input[type="checkbox"] {
+  margin-right: 6px;
+  cursor: pointer;
+}
+
+
+
 /* MOBILE RESPONSIVE LEGEND STYLES */
 @media (max-width: 700px) {
     #legend {
