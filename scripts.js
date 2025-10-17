@@ -11,8 +11,8 @@ let VT_SENATE_GEOJSON = null;
 var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/light-v11',
-    center: [-72.66422, 43.96237], // CENTERED ON VERMONT
-    zoom: 7.5,
+    center: [-72.66422, 44.05], // CENTERED ON VERMONT
+    zoom: 7,
     minZoom: 5.8
 });
 
